@@ -1,43 +1,43 @@
 // src/components/PropertyCard.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Bed, Bath, Car, MapPin, ArrowRight } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Bed, Bath, Car, MapPin, ArrowRight } from "lucide-react";
 
 export default function PropertyCard({ property }) {
   if (!property) return null;
 
   // Formatação monetária em padrão Real (R$)
   function formatPrice(val, type) {
-    const formatted = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-      maximumFractionDigits: 0
+    const formatted = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+      maximumFractionDigits: 0,
     }).format(val);
 
-    return type === 'aluguel' ? `${formatted}/mês` : formatted;
+    return type === "aluguel" ? `${formatted}/mês` : formatted;
   }
 
-  const isRental = property.transactionType === 'aluguel';
+  const isRental = property.transactionType === "aluguel";
 
   return (
     <article className="card-base flex flex-col h-full group">
       {/* Imagem do Imóvel */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-brand-dark/10">
         <img
-          src={property.images && property.images[0] ? property.images[0] : ''}
+          src={property.images && property.images[0] ? property.images[0] : ""}
           alt={property.title}
           loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
-        
+
         {/* Tag de Negociação (VENDA / ALUGUEL) */}
         <div className="absolute top-3 left-3">
-          <span className={`px-2.5 py-1 text-xs font-semibold uppercase tracking-wider rounded-md shadow-sm ${
-            isRental 
-              ? 'bg-amber-700 text-white' 
-              : 'bg-brand-dark text-white'
-          }`}>
-            {isRental ? 'Aluguel' : 'Venda'}
+          <span
+            className={`px-2.5 py-1 text-xs font-semibold uppercase tracking-wider rounded-md shadow-sm ${
+              isRental ? "bg-amber-700 text-white" : "bg-brand-dark text-white"
+            }`}
+          >
+            {isRental ? "Aluguel" : "Venda"}
           </span>
         </div>
 
@@ -56,7 +56,9 @@ export default function PropertyCard({ property }) {
           {/* Localização */}
           <div className="flex items-center gap-1.5 text-xs text-brand-muted mb-1.5">
             <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0" />
-            <span className="truncate">{property.location} — {property.city}/{property.state}</span>
+            <span className="truncate">
+              {property.location} — {property.city}/{property.state}
+            </span>
           </div>
 
           {/* Título */}
@@ -67,28 +69,39 @@ export default function PropertyCard({ property }) {
           {/* Características (Ícones visuais claros sem textos repetitivos) */}
           <div className="flex items-center gap-4 py-3 my-3 border-y border-brand-border/60 text-brand-text text-sm">
             {property.bedrooms > 0 && (
-              <div className="flex items-center gap-1.5" title={`${property.bedrooms} Quartos`}>
+              <div
+                className="flex items-center gap-1.5"
+                title={`${property.bedrooms} Quartos`}
+              >
                 <Bed className="w-4 h-4 text-brand-gold" />
                 <span className="font-semibold">{property.bedrooms}</span>
               </div>
             )}
 
             {property.bathrooms > 0 && (
-              <div className="flex items-center gap-1.5" title={`${property.bathrooms} Banheiros`}>
+              <div
+                className="flex items-center gap-1.5"
+                title={`${property.bathrooms} Banheiros`}
+              >
                 <Bath className="w-4 h-4 text-brand-gold" />
                 <span className="font-semibold">{property.bathrooms}</span>
               </div>
             )}
 
             {property.parkingSpaces > 0 && (
-              <div className="flex items-center gap-1.5" title={`${property.parkingSpaces} Vagas de Garagem`}>
+              <div
+                className="flex items-center gap-1.5"
+                title={`${property.parkingSpaces} Vagas de Garagem`}
+              >
                 <Car className="w-4 h-4 text-brand-gold" />
                 <span className="font-semibold">{property.parkingSpaces}</span>
               </div>
             )}
 
-            {property.type === 'terreno' && (
-              <span className="text-xs text-brand-muted italic">Pronto para construir</span>
+            {property.type === "terreno" && (
+              <span className="text-xs text-brand-muted italic">
+                Pronto para construir
+              </span>
             )}
           </div>
         </div>
@@ -96,8 +109,10 @@ export default function PropertyCard({ property }) {
         {/* Preço e Botão Ver Detalhes */}
         <div className="pt-2 flex items-center justify-between mt-auto">
           <div>
-            <span className="block text-[11px] uppercase tracking-wider text-brand-muted font-medium">Valor</span>
-            <span className="text-lg font-bold text-brand-dark font-serif">
+            <span className="block text-[11px] uppercase tracking-wider text-brand-muted font-medium">
+              Valor
+            </span>
+            <span className="price-display text-lg font-medium text-brand-dark">
               {formatPrice(property.price, property.transactionType)}
             </span>
           </div>

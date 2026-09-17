@@ -1,33 +1,37 @@
 // src/components/RegionSection.jsx
-import React from 'react';
-import { regions } from '../data/regions';
-import { MapPin, Compass } from 'lucide-react';
+import React from "react";
+import { regions } from "../data/regions";
+import { MapPin, Compass } from "lucide-react";
 
 export default function RegionSection() {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20" aria-labelledby="region-title">
-      
+    <section
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20"
+      aria-labelledby="region-title"
+    >
       {/* Cabeçalho */}
-      <div className="max-w-3xl mb-12">
-        <span className="text-xs font-semibold uppercase tracking-widest text-brand-gold block mb-2">
-          Conhecimento Local
-        </span>
-        <h2 id="region-title" className="text-2xl sm:text-3xl lg:text-4xl font-bold font-serif text-brand-dark">
+      <div className="max-w-3xl mx-auto mb-12 text-center">
+        <h2
+          id="region-title"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif text-brand-dark"
+        >
           Conheça a Região
         </h2>
-        <p className="text-brand-text/80 text-base sm:text-lg mt-3 italic font-serif">
+        <p className="text-brand-text/80 text-lg sm:text-xl mt-4 italic font-serif">
           “Mais do que encontrar um imóvel, encontre o lugar certo para viver.”
         </p>
-        <p className="text-brand-muted text-sm sm:text-base mt-2 max-w-2xl">
-          Granja e o litoral norte do Ceará combinam história secular, natureza exuberante e um ritmo de vida acolhedor. Descubra os bairros e cidades onde atuo diretamente:
+        <p className="text-brand-muted text-base sm:text-lg mt-3 max-w-2xl mx-auto">
+          Granja e o litoral norte do Ceará combinam história secular, natureza
+          exuberante e um ritmo de vida acolhedor. Descubra os bairros e cidades
+          onde atuo diretamente:
         </p>
       </div>
 
       {/* Grid das Regiões */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {regions.map(function(region) {
+        {regions.map(function (region) {
           return (
-            <div 
+            <div
               key={region.id}
               className="group bg-white rounded-2xl overflow-hidden border border-brand-border/80 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
             >
@@ -69,7 +73,6 @@ export default function RegionSection() {
           );
         })}
       </div>
-
     </section>
   );
 }
